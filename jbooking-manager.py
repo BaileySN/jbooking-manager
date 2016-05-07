@@ -61,12 +61,14 @@ def checkfolder():
             print("create ftpupload directory")
         os.makedirs(curdir+sep+"tmp"+sep+"ftpupload")
 
+checkfolder()
 db = funcdb.database()
 
 def get_calendarid(calendarname):
+    prefix = cfg['DATABASE']['DB_PREFIX']
     try:
-        squery = """SELECT `jo34_bookingcalendarforjoomla_calendars`.`id` FROM `jo34_bookingcalendarforjoomla_calendars`
-WHERE `jo34_bookingcalendarforjoomla_calendars`.`title` = '%s';""" %(calendarname)
+        squery = """SELECT %sbookingcalendarforjoomla_calendars.`id` FROM %sbookingcalendarforjoomla_calendars
+WHERE %sbookingcalendarforjoomla_calendars.`title` = '%s';""" %(prefix, prefix, prefix, calendarname)
         nameid = db.squery(squery)
         if cfg['SYSTEM']['DEBUG'] == False:
             print("calid = "+str(nameid[0]))
@@ -78,11 +80,12 @@ WHERE `jo34_bookingcalendarforjoomla_calendars`.`title` = '%s';""" %(calendarnam
 
 
 def get_statusid(calendarname, statusname):
+    prefix = cfg['DATABASE']['DB_PREFIX']
     try:
         squery = """
-SELECT `jo34_bookingcalendarforjoomla_legenditems`.`id`
-FROM `jo34_bookingcalendarforjoomla_legenditems` WHERE `jo34_bookingcalendarforjoomla_legenditems`.`calendar` = '%s' AND
-`jo34_bookingcalendarforjoomla_legenditems`.`title` = '%s' ;""" %(get_calendarid(calendarname), statusname)
+SELECT %sbookingcalendarforjoomla_legenditems.`id`
+FROM %sbookingcalendarforjoomla_legenditems WHERE %sbookingcalendarforjoomla_legenditems.`calendar` = '%s' AND
+%sbookingcalendarforjoomla_legenditems.`title` = '%s' ;""" %(prefix, prefix, prefix, get_calendarid(calendarname), prefix, statusname)
         statid = db.squery(squery)
         if cfg['SYSTEM']['DEBUG'] == False:
             print("statusid = "+str(statid[0]))
@@ -93,11 +96,11 @@ FROM `jo34_bookingcalendarforjoomla_legenditems` WHERE `jo34_bookingcalendarforj
         return "error"
 
 def get_bookingid(calendarname, date):
-
+    prefix = cfg['DATABASE']['DB_PREFIX']
     try:
         squery = """
-SELECT `jo34_bookingcalendarforjoomla_statuses`.`id` FROM `jo34_bookingcalendarforjoomla_statuses`
-WHERE `jo34_bookingcalendarforjoomla_statuses`.`calendar` = '%s' AND `jo34_bookingcalendarforjoomla_statuses`.`date` = '%s';""" %(get_calendarid(calendarname), date)
+SELECT %sbookingcalendarforjoomla_statuses.`id` FROM %sbookingcalendarforjoomla_statuses
+WHERE %sbookingcalendarforjoomla_statuses.`calendar` = '%s' AND %sbookingcalendarforjoomla_statuses.`date` = '%s';""" %(prefix, prefix, prefix, get_calendarid(calendarname), prefix, date)
         statsid = db.squery(squery)
         if cfg['SYSTEM']['DEBUG'] == False:
             print("bookingid = "+str(statsid[0]))
@@ -109,33 +112,37 @@ WHERE `jo34_bookingcalendarforjoomla_statuses`.`calendar` = '%s' AND `jo34_booki
 
 
 def get_booking_status(currentdate):
-    query = """SELECT `jo34_bookingcalendarforjoomla_calendars`.`title`,
-`jo34_bookingcalendarforjoomla_legenditems`.`color`,
-`jo34_bookingcalendarforjoomla_legenditems`.`title`,
-`jo34_bookingcalendarforjoomla_statuses`.`status` FROM `werbeq_db2`.`jo34_bookingcalendarforjoomla_legenditems`
-INNER JOIN `werbeq_db2`.`jo34_bookingcalendarforjoomla_calendars` ON `jo34_bookingcalendarforjoomla_legenditems`.`calendar` = `jo34_bookingcalendarforjoomla_calendars`.`id`
-INNER JOIN `werbeq_db2`.`jo34_bookingcalendarforjoomla_statuses`ON `jo34_bookingcalendarforjoomla_legenditems`.`id` = `jo34_bookingcalendarforjoomla_statuses`.`status`
-WHERE `jo34_bookingcalendarforjoomla_statuses`.`date` >= '%s';""" %(currentdate)
+    dbname = cfg['DATABASE']['DB']
+    prefix = cfg['DATABASE']['DB_PREFIX']
+    query = """SELECT %sbookingcalendarforjoomla_calendars.`title`,
+%sbookingcalendarforjoomla_legenditems.`color`,
+%sbookingcalendarforjoomla_legenditems.`title`,
+%sbookingcalendarforjoomla_statuses.`status` FROM %s.%sbookingcalendarforjoomla_legenditems
+INNER JOIN %s.%sbookingcalendarforjoomla_calendars ON %sbookingcalendarforjoomla_legenditems.`calendar` = %sbookingcalendarforjoomla_calendars.`id`
+INNER JOIN %s.%sbookingcalendarforjoomla_statuses ON %sbookingcalendarforjoomla_legenditems.`id` = %sbookingcalendarforjoomla_statuses.`status`
+WHERE %sbookingcalendarforjoomla_statuses.`date` >= '%s';""" %(prefix, prefix, prefix,prefix,dbname, prefix, dbname, prefix, prefix, prefix, dbname, prefix, prefix, prefix, prefix, currentdate)
     status = db.query(query)
     return status
 
 def set_booking(calendarname, bookdate, statusname):
-    query = """insert INTO `jo34_bookingcalendarforjoomla_statuses`(`calendar`, `date`, `status`)
-VALUES ('%s', '%s', '%s');""" %(get_calendarid(calendarname), bookdate, get_statusid(calendarname, statusname))
+    prefix = cfg['DATABASE']['DB_PREFIX']
+    query = """insert INTO %sbookingcalendarforjoomla_statuses(`calendar`, `date`, `status`)
+VALUES ('%s', '%s', '%s');""" %(prefix, get_calendarid(calendarname), bookdate, get_statusid(calendarname, statusname))
     db.insert(query)
 
 def upd_booking(calendarname, date, statusname):
     calid = get_calendarid(calendarname)
-
-    query = """UPDATE `jo34_bookingcalendarforjoomla_statuses` SET `status` = '%s'
-WHERE `jo34_bookingcalendarforjoomla_statuses`.`calendar` = '%s' AND
-`jo34_bookingcalendarforjoomla_statuses`.`date` = '%s';""" %(get_statusid(calendarname, statusname), calid, date)
+    prefix = cfg['DATABASE']['DB_PREFIX']
+    query = """UPDATE %sbookingcalendarforjoomla_statuses SET `status` = '%s'
+WHERE %sbookingcalendarforjoomla_statuses.`calendar` = '%s' AND
+%sbookingcalendarforjoomla_statuses.`date` = '%s';""" %(prefix, get_statusid(calendarname, statusname), prefix, calid, prefix, date)
     db.insert(query)
 
 def del_booking(calendarname, date):
+    prefix = cfg['DATABASE']['DB_PREFIX']
     try:
-        delquery = """DELETE FROM `jo34_bookingcalendarforjoomla_statuses` WHERE
-`jo34_bookingcalendarforjoomla_statuses`.`calendar` = '%s' AND `jo34_bookingcalendarforjoomla_statuses`.`date` = '%s';""" %(get_calendarid(calendarname), date)
+        delquery = """DELETE FROM %sbookingcalendarforjoomla_statuses WHERE
+%sbookingcalendarforjoomla_statuses.`calendar` = '%s' AND %sbookingcalendarforjoomla_statuses.`date` = '%s';""" %(prefix, prefix, get_calendarid(calendarname), prefix, date)
         db.insert(delquery)
     except TypeError:
         return "error"
@@ -157,7 +164,6 @@ def upset_booking(calendarname, date, statusname):
 
 def ftp_transport():
     import ftplib
-    # from conf.config import FTP_PASSWORD,FTP_LOCAL_PATH,FTP_UPLOAD_FILETYPE,FTP_REMOTE_PATH,FTP_URL,FTP_USER
     FTPPATH = cfg['FTP']['FTP_LOCAL_PATH']
     FTP_UPLOAD_FILETYPE = [".html", ".htm"]
 
@@ -173,11 +179,9 @@ def ftp_transport():
         ftp.login(cfg['FTP']['FTP_USER'], cfg['FTP']['FTP_PASSWORD'])
         ftp.cwd(cfg['FTP']['FTP_REMOTE_PATH'])
         for file in os.listdir(FTPPATH):
-            # print(cfg['FTP']['FTP_UPLOAD_FILETYPE'])
             if file.endswith(tuple(FTP_UPLOAD_FILETYPE)):
                 tfile = open(FTPPATH+file, 'rb')
                 ftp.storbinary('STOR '+ file, tfile)
-                # ftp.sendcmd('SITE CHMOD 777 '+filename)
                 tfile.close()
                 if cfg['SYSTEM']['DEBUG'] == False:
                     print("File: "+file+" Uploaded")
@@ -189,8 +193,6 @@ def ftp_transport():
         ftp.quit()
         ftp.close()
         exit(2)
-
-checkfolder()
 
 """
 Program starts here
