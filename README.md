@@ -51,12 +51,11 @@ Vor der ersten Inbetriebnahme muss die *config.ini* angepasst werden, sonst gibt
 # -*- coding: utf-8 -*-
 
 [SYSTEM]
-# Debugging
-# DEBUG = True/False
+# Debugging aktivieren
+# DEBUG = True
 # Erweiterte Ausgabe
 #
-DEBUG = True
-
+DEBUG =
 
 [DATABASE]
 # Datenbank Einstellungen
@@ -65,12 +64,13 @@ DEBUG = True
 # DB_HOST = <Datenbank Server IP oder DNS>
 # DB_USER = <Datenbank Benutzer>
 # DB_PASSWORD = <Passwort vom Benutzer>
+# DB_PREFIX = <Datenbank Prefix z.B.: jo34_ von Joomla vorgegeben>
 #
-DB = db1
-DB_HOST = server12.example.org
-DB_USER = db_benutzer1
-DB_PASSWORD = Mein_Passwort
-
+DB =
+DB_HOST =
+DB_USER =
+DB_PASSWORD =
+DB_PREFIX = jo34_
 
 [FTP]
 # FTP Einstellungen
@@ -78,13 +78,13 @@ DB_PASSWORD = Mein_Passwort
 # FTP_URL = <FTP Server URL/IP>
 # FTP_USER = <FTP Benutzer>
 # FTP_PASSWORD = <FTP Benutzer Passwort>
-# FTP_UPLOAD_FILETYPE = [<Dateitypen die Hochgeladen werden sollen>]
+# FTP_UPLOAD_FILETYPE = <Dateitypen die Hochgeladen werden sollen mit Komma getrennt>
 # FTP_LOCAL_PATH = <Anderen Pfad fuer das hochladen der Daten ueber FTP
 #
-FTP_URL = server12.example.org
-FTP_USER = ftp_benutzer1
-FTP_PASSWORD = Mein_Passwort
-FTP_UPLOAD_FILETYPE = ('.html', '.htm')
+FTP_URL =
+FTP_USER =
+FTP_PASSWORD =
+FTP_UPLOAD_FILETYPE = .html, .htm
 FTP_REMOTE_PATH = images/tirol/preise/
 FTP_LOCAL_PATH = None
 ```
