@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 # -*- conding: utf-8 -*-
 ###########################################################################################################
-# JBooking-Manager                                                                                        #
+# JBooking-Manager   <https://github.com/BaileySN/jbooking-manager>                                       #
 # Copyright (C) [2015]  [Guenter Bailey]                                                                  #
 #                                                                                                         #
 # This program is free software;                                                                          #
@@ -40,24 +40,22 @@ import configparser
 cfg = configparser.ConfigParser()
 cfg.read(curdir+sep+"conf"+sep+"config.ini")
 
-
 now = datetime.datetime.now()
 currdate = now.strftime("%Y-%m-%d")
 
-
 def checkfolder():
     if not os.path.exists(curdir+sep+"tmp"):
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("create tmp directory")
         os.makedirs(curdir+sep+"tmp")
 
     if not os.path.exists(curdir+sep+"log"):
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("create log directory")
         os.makedirs(curdir+sep+"log")
 
     if not os.path.exists(curdir+sep+"tmp"+sep+"ftpupload"):
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("create ftpupload directory")
         os.makedirs(curdir+sep+"tmp"+sep+"ftpupload")
 
@@ -70,14 +68,13 @@ def get_calendarid(calendarname):
         squery = """SELECT %sbookingcalendarforjoomla_calendars.`id` FROM %sbookingcalendarforjoomla_calendars
 WHERE %sbookingcalendarforjoomla_calendars.`title` = '%s';""" %(prefix, prefix, prefix, calendarname)
         nameid = db.squery(squery)
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("calid = "+str(nameid[0]))
         return nameid[0]
     except TypeError:
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("calid = "+str("ERROR - Can't find Calendar"))
         return "error"
-
 
 def get_statusid(calendarname, statusname):
     prefix = cfg['DATABASE']['DB_PREFIX']
@@ -87,11 +84,11 @@ SELECT %sbookingcalendarforjoomla_legenditems.`id`
 FROM %sbookingcalendarforjoomla_legenditems WHERE %sbookingcalendarforjoomla_legenditems.`calendar` = '%s' AND
 %sbookingcalendarforjoomla_legenditems.`title` = '%s' ;""" %(prefix, prefix, prefix, get_calendarid(calendarname), prefix, statusname)
         statid = db.squery(squery)
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("statusid = "+str(statid[0]))
         return statid[0]
     except TypeError:
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("statusid = "+str("error"))
         return "error"
 
@@ -102,14 +99,13 @@ def get_bookingid(calendarname, date):
 SELECT %sbookingcalendarforjoomla_statuses.`id` FROM %sbookingcalendarforjoomla_statuses
 WHERE %sbookingcalendarforjoomla_statuses.`calendar` = '%s' AND %sbookingcalendarforjoomla_statuses.`date` = '%s';""" %(prefix, prefix, prefix, get_calendarid(calendarname), prefix, date)
         statsid = db.squery(squery)
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("bookingid = "+str(statsid[0]))
         return statsid[0]
     except TypeError:
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print("bookingid = "+str("error"))
         return "error"
-
 
 def get_booking_status(currentdate):
     dbname = cfg['DATABASE']['DB']
@@ -151,11 +147,11 @@ def upset_booking(calendarname, date, statusname):
     try:
         if str(get_bookingid(calendarname, date)) != str("error"):
             upd_booking(calendarname, date, statusname)
-            if cfg['SYSTEM']['DEBUG'] == False:
+            if cfg['SYSTEM']['DEBUG'] == "True":
                 print("update = "+calendarname+" - "+str(date)+" - "+statusname)
         else:
             set_booking(calendarname, date, statusname)
-            if cfg['SYSTEM']['DEBUG'] == False:
+            if cfg['SYSTEM']['DEBUG'] == "True":
                 print("insert = "+calendarname+" - "+str(date)+" - "+statusname)
         return "ok"
     except IOError:
@@ -183,7 +179,7 @@ def ftp_transport():
                 tfile = open(FTPPATH+file, 'rb')
                 ftp.storbinary('STOR '+ file, tfile)
                 tfile.close()
-                if cfg['SYSTEM']['DEBUG'] == False:
+                if cfg['SYSTEM']['DEBUG'] == "True":
                     print("File: "+file+" Uploaded")
         ftp.quit()
         ftp.close()
@@ -225,7 +221,7 @@ class App():
 
         elif options.csvload:
             if options.csvfile:
-                if cfg['SYSTEM']['DEBUG'] == False:
+                if cfg['SYSTEM']['DEBUG'] == "True":
                     print(options.csvfile)
                 self.csv_load(options.csvfile)
                 exit(2)
@@ -256,7 +252,6 @@ class App():
             parser.print_help()
             exit(1)
 
-
     def csv_load(self, filepath):
         data = csv.reader(open(filepath, 'r'), delimiter=';', quotechar='"')
         for row in data:
@@ -264,7 +259,7 @@ class App():
             bookdate = row[1]
             statname = row[2]
 
-            if cfg['SYSTEM']['DEBUG'] == False:
+            if cfg['SYSTEM']['DEBUG'] == "True":
                 print(calname+" - "+bookdate+" - "+statname)
 
             errcode = upset_booking(calname, bookdate, statname)
@@ -273,13 +268,11 @@ class App():
             else:
                 print(calname+" - "+bookdate+" - "+statname+" = Error")
 
-
     def get_bookings(self, currentdate):
         print(get_booking_status(currentdate))
 
-
     def add_booking(self, calendarname, bookdate, statusname):
-        if cfg['SYSTEM']['DEBUG'] == False:
+        if cfg['SYSTEM']['DEBUG'] == "True":
             print(calendarname+" - "+bookdate+" - "+statusname)
 
         errcode = upset_booking(calendarname, bookdate, statusname)
