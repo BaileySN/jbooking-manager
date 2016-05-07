@@ -30,7 +30,11 @@ if not os.path.exists(curdir+sep+"conf"):
 if not os.path.isfile(curdir+sep+"conf"+sep+"config.ini"):
     print("Create config.ini")
     from shutil import copyfile
+    from time import sleep
     copyfile(curdir+sep+"bin"+sep+"config.tmpl", curdir+sep+"conf"+sep+"config.ini")
+    print("Please check the config.ini first")
+    sleep(2)
+    exit(2)
 
 import configparser
 cfg = configparser.ConfigParser()
