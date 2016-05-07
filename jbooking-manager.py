@@ -161,7 +161,8 @@ def upset_booking(calendarname, date, statusname):
 def ftp_transport():
     import ftplib
     FTPPATH = cfg['FTP']['FTP_LOCAL_PATH']
-    FTP_UPLOAD_FILETYPE = [".html", ".htm"]
+    # FTP_UPLOAD_FILETYPE = [".html", ".htm"]
+    tlist = [e.strip() for e in cfg.get('FTP', 'FTP_UPLOAD_FILETYPE').split(',')]
 
     if "None" == FTPPATH:
         FTPPATH = (curdir+sep+"tmp"+sep+"ftpupload"+sep)
@@ -175,7 +176,7 @@ def ftp_transport():
         ftp.login(cfg['FTP']['FTP_USER'], cfg['FTP']['FTP_PASSWORD'])
         ftp.cwd(cfg['FTP']['FTP_REMOTE_PATH'])
         for file in os.listdir(FTPPATH):
-            if file.endswith(tuple(FTP_UPLOAD_FILETYPE)):
+            if file.endswith(tuple(tlist)):
                 tfile = open(FTPPATH+file, 'rb')
                 ftp.storbinary('STOR '+ file, tfile)
                 tfile.close()
