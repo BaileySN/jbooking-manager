@@ -8,7 +8,9 @@ Für die Verwendung der Pakete gibt es 2 möglichkeiten.
 
 Einmal die Pakete von GitHub (auch Sourcen genannt) **Bevorzugt**
 
-Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegt. *Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
+Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegt. 
+
+*Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
 
 **Inhalt**
 
