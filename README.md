@@ -8,11 +8,13 @@ Für die Verwendung der Pakete gibt es 2 möglichkeiten.
 
 Einmal die Pakete von GitHub (auch Sourcen genannt) **Bevorzugt**
 
-Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegt.
+Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegt. *Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
 
 **Inhalt**
 
 [**Config.ini**](#configini)
+
+---
 
 [**Einrichtung Git Version**](#einrichtung-direkt-von-github)
 
@@ -33,6 +35,8 @@ Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die 
 ## Einrichtung (direkt von GitHub)
 
 Für die Verwendung benötigt man folgende Pakete noch zusätzlich zu Python 3.4.x.
+
+Windows Pakete liegen auch auf unserem [Download Server](https://dl.bscn.at/JBooking-Manager/Source/) bereit.
 
 * Python 3.4.x
 * PyMySQL ab 0.7.2 Installation über pip
