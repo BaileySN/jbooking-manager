@@ -8,7 +8,7 @@ Für die Verwendung der Pakete gibt es 2 Möglichkeiten:
 
 1. Einmal die Pakete von GitHub (auch Sourcen genannt) verwenden. Die Vorteile sind ein besseres Update- und Versionsmanagement. **Bevorzugt**
 
-2. Oder die verwendung der Kompilierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegen muss. 
+2. Oder die verwendung der kompilierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegen muss. 
 
 *Wichtig: Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
 
@@ -147,7 +147,7 @@ Die Platzierung kann über die [*config.ini*](#configini) bei **FTP_REMOTE_PATH*
 
 ---
 
-## Verwendung der bereits Kompilierten Version (auch exe Version genannt)
+## Verwendung der bereits kompilierten Version (auch exe Version genannt)
 
 ### Download der EXE / ZIP Dateien
 
