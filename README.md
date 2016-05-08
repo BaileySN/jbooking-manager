@@ -1,16 +1,16 @@
 # JBooking-Manager
 
-JBooking-Manager kann man als API für Joomla Booking Calendar und Automatischem FTP Client für ansehen.
+JBooking-Manager kann man als API für Joomla Booking Calendar und als FTP Client ansehen.
 
 Dabei kann das Programm über die CMD Bedient werden.
 
-Für die Verwendung der Pakete gibt es 2 möglichkeiten.
+Für die Verwendung der Pakete gibt es 2 Möglichkeiten:
 
-Einmal die Pakete von GitHub (auch Sourcen genannt) **Bevorzugt**
+1. Einmal die Pakete von GitHub (auch Sourcen genannt) verwenden. Die Vorteile sind ein besseres Update- und Versionsmanagement. **Bevorzugt**
 
-Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegt. 
+2. Oder die verwendung der Kompillierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegen muss. 
 
-*Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
+*Wichtig: Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
 
 **Inhalt**
 
