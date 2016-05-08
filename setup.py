@@ -25,7 +25,7 @@ setup(
     license='GPL3',
     author='Guenter Bailey',
     author_email='office@bailey-solution.com',
-    description="Manager API for Joomla BookingCalendar and easy FTP Upload Tool.",
+    description="Management API for Joomla Booking Calendar and easy FTP Upload.",
     data_files = data_files,
     options = {"py2exe": {"optimize": 2,
                           "packages": ['bin'],
