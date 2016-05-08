@@ -12,7 +12,7 @@ Für die Verwendung der Pakete gibt es 2 Möglichkeiten:
 
 *Wichtig: Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
 
-**Inhalt**
+## Inhalt
 
 [**Config.ini**](#configini)
 
