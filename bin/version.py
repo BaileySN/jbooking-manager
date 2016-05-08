@@ -2,4 +2,4 @@
 # -*- coding: utf-8 -*-
 
 class program():
-    version = "0.5a"
+    version = "0.6a"
