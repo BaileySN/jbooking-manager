@@ -2,7 +2,7 @@
 # -*- conding: utf-8 -*-
 ###########################################################################################################
 # JBooking-Manager   <https://github.com/BaileySN/jbooking-manager>                                       #
-# Copyright (C) [2015]  [Guenter Bailey]                                                                  #
+# Copyright (C) [2016]  [Guenter Bailey]                                                                  #
 #                                                                                                         #
 # This program is free software;                                                                          #
 # you can redistribute it and/or modify it under the terms of the GNU General Public License              #
@@ -161,7 +161,6 @@ def upset_booking(calendarname, date, statusname):
 def ftp_transport():
     import ftplib
     FTPPATH = cfg['FTP']['FTP_LOCAL_PATH']
-    # FTP_UPLOAD_FILETYPE = [".html", ".htm"]
     tlist = [e.strip() for e in cfg.get('FTP', 'FTP_UPLOAD_FILETYPE').split(',')]
 
     if "None" == FTPPATH:
