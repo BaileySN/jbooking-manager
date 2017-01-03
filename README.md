@@ -54,39 +54,39 @@ pip install -r requirements.txt
 Vor der ersten Inbetriebnahme muss die *config.ini* angepasst werden, sonst gibt das Programm beim starten eine Fehlermeldung aus.
 
 ```
-# -*- coding: utf-8 -*-
-
 [SYSTEM]
-# Debugging aktivieren
-# DEBUG = True
-# Erweiterte Ausgabe
-#
+; Debugging aktivieren
+; DEBUG = True
+; Erweiterte Ausgabe
+;
 DEBUG =
 
+
 [DATABASE]
-# Datenbank Einstellungen
-#
-# DB = <Datenbank>
-# DB_HOST = <Datenbank Server IP oder DNS>
-# DB_USER = <Datenbank Benutzer>
-# DB_PASSWORD = <Passwort vom Benutzer>
-# DB_PREFIX = <Datenbank Prefix z.B.: jo34_ von Joomla vorgegeben>
-#
+; Datenbank Einstellungen
+;
+; DB = <Datenbank>
+; DB_HOST = <Datenbank Server IP oder DNS>
+; DB_USER = <Datenbank Benutzer>
+; DB_PASSWORD = <Passwort vom Benutzer>
+; DB_PREFIX = <Datenbank Prefix z.B.: jo34_ von Joomla vorgegeben>
+;
 DB =
 DB_HOST =
 DB_USER =
 DB_PASSWORD =
 DB_PREFIX = jo34_
 
+
 [FTP]
-# FTP Einstellungen
-#
-# FTP_URL = <FTP Server URL/IP>
-# FTP_USER = <FTP Benutzer>
-# FTP_PASSWORD = <FTP Benutzer Passwort>
-# FTP_UPLOAD_FILETYPE = <Dateitypen die Hochgeladen werden sollen mit Komma getrennt>
-# FTP_LOCAL_PATH = <Anderen Pfad fuer das hochladen der Daten ueber FTP
-#
+; FTP Einstellungen
+;
+; FTP_URL = <FTP Server URL/IP>
+; FTP_USER = <FTP Benutzer>
+; FTP_PASSWORD = <FTP Benutzer Passwort>
+; FTP_UPLOAD_FILETYPE = <Dateitypen die Hochgeladen werden sollen mit Komma getrennt>
+; FTP_LOCAL_PATH = <Anderen Pfad fuer das hochladen der Daten ueber FTP
+;
 FTP_URL =
 FTP_USER =
 FTP_PASSWORD =
