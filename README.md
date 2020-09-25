@@ -8,7 +8,7 @@ Für die Verwendung der Pakete gibt es 2 Möglichkeiten:
 
 1. Einmal die Pakete von GitHub (auch Sourcen genannt) verwenden. Die Vorteile sind ein besseres Update- und Versionsmanagement. **Bevorzugt**
 
-2. Oder die verwendung der kompilierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://dl.bscn.at/JBooking-Manager/) liegen muss. 
+2. Oder die verwendung der kompilierten **exe** Datei, dies aber leider durch die Lizenz auf dem [Download Server](https://download.b2go.cloud/JBooking-Manager/) liegen muss. 
 
 *Wichtig: Die exe Version wird zeitverzögert erstellt, somit sind die Bugfixes und  neue Features zuerst auf Github.*
 
@@ -38,7 +38,7 @@ Für die Verwendung der Pakete gibt es 2 Möglichkeiten:
 
 Für die Verwendung benötigt man folgende Pakete noch zusätzlich zu Python 3.4.x.
 
-Windows Pakete liegen auch auf unserem [Download Server](https://dl.bscn.at/JBooking-Manager/Source/) bereit.
+Windows Pakete liegen auch auf unserem [Download Server](https://download.b2go.cloud/JBooking-Manager/Source/) bereit.
 
 * Python 3.4.x
 * PyMySQL ab 0.7.2 Installation über pip
@@ -151,7 +151,7 @@ Die Platzierung kann über die [*config.ini*](#configini) bei **FTP_REMOTE_PATH*
 
 ### Download der EXE / ZIP Dateien
 
-[JBooking-Manager Download](https://dl.bscn.at/JBooking-Manager/)
+[JBooking-Manager Download](https://download.b2go.cloud/JBooking-Manager/)
 
 Die *EXE* Version ist ein Installer, der das Archiv unter *C:\Bailey-Solution\jbooking-manager* oder man gibt einen anderen Pfad an entpackt.
 
