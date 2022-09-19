@@ -1,3 +1,5 @@
+## is now Archived
+
 # JBooking-Manager
 
 JBooking-Manager kann man als API für Joomla Booking Calendar und als FTP Client ansehen.
